@@ -87,10 +87,11 @@ Output: curated CSV with difficulty labels + list of "dangerous" samples.
 
 ```
 ci-curation/
-├── README.md                         # This file
-├── experiment_log.md                 # Full experiment log with all 4 experiments
-├── curation_ab_test_v4_noisy.ipynb   # The validation experiment (run on Colab)
-└── sst2_ci_demo_curated.csv          # Sample curated dataset
+├── README.md                                   # This file
+├── experiment_log.md                           # Full experiment log with all 4 experiments
+├── curation_ab_test_v4_noisy.ipynb             # The validation experiment with PROXY (run on Colab)
+├── curation_ab_test_v4_noisy_ci_output.ipynb   # The validation experiment with CI OUTPUT (run on Colab)
+└── sst2_ci_demo_curated.csv                    # Sample curated dataset
 ```
 
 ## Running the Experiment
@@ -159,4 +160,5 @@ Please also cite the original SST-2 dataset:
 - **DistilBERT Model:** Apache 2.0
 
 **Copyright (c) 2026 Collapse Index Labs - Alex Kwon. All rights reserved.**
+
 
