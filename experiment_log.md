@@ -99,49 +99,44 @@ Validate that CI-guided data curation improves model training quality.
 
 ---
 
-## Key Learnings
+## Experiment 4: Synthetic Noise + Proxy Detection
+**Date:** 2026-01-07  
+**Notebook:** `curation_ab_test_v4_noisy.ipynb` (original version)  
+**Dataset:** `sst2_ci_demo_curated.csv` + 10% label flip
 
-1. **SST-2 is already a CLEAN benchmark**
-   - Curated by Stanford NLP, minimal label noise
-   - "Dangerous" samples are genuinely ambiguous, not mislabeled
-   - CI detects instability ≠ bad labels
+| Setting | Value |
+|---------|-------|
+| Model | DistilBERT |
+| Base samples | 500 |
+| Noise rate | 10% (50 labels flipped) |
+| Detection | **TF-IDF + LogReg probe (NOT real CI)** |
+| Suspicious removed | Bottom 15% confidence |
 
-2. **CI curation needs NOISY data to show value**
-   - Clean benchmarks don't have enough noise to remove
-   - Need 10%+ label noise for meaningful curation effect
+### Results
+| Metric | Baseline | Curated | Oracle | Cure vs Base |
+|--------|----------|---------|--------|--------------|
+| Accuracy | 0.6800 | 0.7200 | 0.7800 | +0.0400 ✅ |
+| F1 | 0.7576 | 0.7627 | 0.7963 | +0.0051 ✅ |
+| AUC | 0.8185 | 0.7885 | 0.8598 | -0.0300 ❌ |
 
-3. **Small removal % has minimal impact**
-   - 2-3% removal doesn't move the needle
-   - Removing ambiguous samples can hurt generalization
+**Verdict:** 🟡 2/3 improved (AUC dropped)
 
-4. **Curriculum ordering has no effect with default Trainer**
-   - Trainer shuffles batches → order is lost
+### Gap to Oracle Closed
+| Metric | % Recovered |
+|--------|-------------|
+| Accuracy | +40.0% |
+| F1 | +13.3% |
+| AUC | **-72.8%** ❌ |
 
----
-
-## Conclusion
-
-**CI-guided curation doesn't improve training on SST-2 because:**
-- SST-2 is already clean (benchmark quality)
-- "Dangerous" samples are ambiguous, not wrong
-- Removing ambiguous samples hurts edge case handling
-
-**Where CI curation WOULD help:**
-- Real-world noisy data (web-scraped, crowd-labeled)
-- Datasets with known label errors (10%+ noise)
-- Large datasets where 5%+ can be safely removed
-
----
-
-## Next Steps
-
-- [x] **Experiment 4:** Inject synthetic noise (flip 10% of labels) → test CI curation
-- [ ] OR: Position CI curation as "noisy data" tool in docs
-- [ ] Consider: CI is for ANALYSIS, not necessarily curation
+### Analysis
+- ⚠️ This was a PROXY, not the real CI system
+- ✅ Accuracy improved 4 points (68% → 72%)
+- ❌ AUC dropped - proxy hurt probability calibration
+- 💡 TF-IDF measures text complexity, not prediction instability
 
 ---
 
-## Experiment 4: Synthetic Noise (v4) - REBUILT WITH REAL CI FLAGS
+## Experiment 5: Synthetic Noise + Real CLI Flags
 **Date:** 2026-01-07  
 **Notebook:** `curation_ab_test_v4_noisy.ipynb`  
 **Dataset:** `sst2_ci_demo_curated.csv` + 10% label flip
@@ -180,10 +175,10 @@ Validate that CI-guided data curation improves model training quality.
 
 ---
 
-## ⚠️ Proxy vs Real CI: Critical Distinction
+## ⚠️ Experiment 4 vs 5: Proxy vs Real CI
 
-### Initial Attempt: TF-IDF Proxy
-Our first version of Experiment 4 used a **TF-IDF + LogisticRegression probe** to simulate CI detection:
+### Experiment 4: TF-IDF Proxy
+Our first version used a **TF-IDF + LogisticRegression probe** to simulate CI detection:
 - Vectorized text with TfidfVectorizer
 - Trained LogReg classifier with 5-fold cross-val
 - Flagged bottom 15% confidence as "suspicious"
@@ -195,8 +190,8 @@ Our first version of Experiment 4 used a **TF-IDF + LogisticRegression probe** t
 | F1 | 0.7576 | 0.7627 | 0.7963 | +13.3% |
 | AUC | 0.8185 | 0.7885 | 0.8598 | **-72.8%** ❌ |
 
-### REBUILT: Real CLI Output
-After realizing the proxy was NOT the real CI system, we rebuilt the notebook to use the actual CLI `difficulty` column:
+### Experiment 5: Real CLI Output
+After realizing the proxy was NOT the real CI system, we ran Experiment 5 using the actual CLI `difficulty` column:
 - Used `difficulty == "dangerous"` from CLI analysis
 - No TF-IDF, no LogReg, no probe
 - Direct use of CI system output
@@ -217,6 +212,26 @@ After realizing the proxy was NOT the real CI system, we rebuilt the notebook to
 | Beat Oracle? | No | **YES** |
 
 **The real CI system is fundamentally different from a text-based proxy. It measures what matters: prediction instability under perturbation.**
+
+---
+
+## Key Learnings
+
+1. **SST-2 is already a CLEAN benchmark**
+   - Curated by Stanford NLP, minimal label noise
+   - "Dangerous" samples are genuinely ambiguous, not mislabeled
+   - CI detects instability ≠ bad labels
+
+2. **CI curation needs NOISY data to show value**
+   - Clean benchmarks don't have enough noise to remove
+   - Need 10%+ label noise for meaningful curation effect
+
+3. **Small removal % has minimal impact**
+   - 2-3% removal doesn't move the needle
+   - Removing ambiguous samples can hurt generalization
+
+4. **Curriculum ordering has no effect with default Trainer**
+   - Trainer shuffles batches → order is lost
 
 ---
 
