@@ -95,9 +95,8 @@ ci-curation/
 
 - [SST-2 Base Dataset (ci-sst2)](https://github.com/collapseindex/ci-sst2) - Original SST-2 validation dataset used in this experiment
 - [SRI Validation (ci-sri)](https://github.com/collapseindex/ci-sri) - AG News multi-class validation
-- [Collapse Index CLI](https://github.com/collapseindex/collapse-index-cli) - The CLI tool
 - [Case Study](https://collapseindex.org/case-studies/ci-curation-validation) - Full writeup
-- [Collapse Index Labs](https://collapseindex.org) - Documentation
+- [Collapse Index Labs](https://collapseindex.org) - Website
 
 ## Citation
 
@@ -133,4 +132,5 @@ Please also cite the original SST-2 dataset:
 - **DistilBERT Model:** Apache 2.0
 
 **Copyright (c) 2026 Collapse Index Labs - Alex Kwon. All rights reserved.**
+
 
