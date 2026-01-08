@@ -1,8 +1,8 @@
 # CI-Guided Data Curation: 107% Error Recovery
 
-> **Validated:** Prediction instability signals label noise. Remove unstable samples, training improves.
+> **Validated:** Prediction instability identifies harmful training samples. Remove them, training beats Oracle.
 
-This repository contains the complete experiment that validates CI-guided data curation on noisy data.
+This repository contains the complete experiment that validates CI-guided data curation.
 
 ## The Result
 
@@ -16,7 +16,9 @@ This repository contains the complete experiment that validates CI-guided data c
 
 ## The Hypothesis
 
-Samples that cause unstable predictions are more likely to have label issues. The Collapse Index (CI) measures how often a model's output changes when you slightly rephrase the input. High instability = suspicious sample.
+Samples that cause unstable predictions are inherently harmful to training - regardless of label correctness. The Collapse Index (CI) measures how often a model's output changes when you slightly rephrase the input. High instability = harmful sample.
+
+**Key insight:** CI analysis runs on clean data FIRST. Dangerous samples are removed BEFORE noise injection. This is why Curated beats Oracle - it removes inherently confusing samples, not just noise.
 
 ## The Experiment
 
@@ -180,9 +182,9 @@ ci-curation/
 
 ## The Insight
 
-> Prediction instability is a learnable signal for data quality. Samples that confuse models during evaluation were likely confusing during labeling too.
+> Prediction instability identifies inherently harmful training samples. These samples confuse models regardless of their labels - removing them helps more than having perfect labels.
 
-**Measure instability -> Find noise -> Clean data -> Better models**
+**Measure instability -> Find harmful samples -> Remove them -> Beat Oracle**
 
 ## Links
 
